@@ -76,7 +76,7 @@
           <td>
             {% if task.status == 'pending' %}
               <a href="/complete-task/{{ task.id }}" class="btn btn-complete">Complete</a>
-              
+              <a href="/delete-task/{{ task.id }}" class="btn btn-delete" onclick="return confirm('Delete this task?')">Delete </a>
             {% else %}
               <span class="task-completed-msg">Completed</span>
             {% endif %}

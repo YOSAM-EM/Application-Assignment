@@ -118,12 +118,11 @@ def complete_task(task_id):
     conn.close()
 
     return redirect("/dashboard")
-# This is the logic for adding task
+# This is the logic for adding tasks
 @app.route("/add-task", methods=["POST"])
 def add_task():
     if "user_id" not in session:
         return redirect("/login")
-
     title = request.form["title"]
     description = request.form.get("description")
     deadline = request.form.get("deadline")
@@ -142,6 +141,23 @@ def add_task():
     cursor.close()
     conn.close()
     return redirect("/dashboard")
+
+#this is  the delete task logic
+@app.route("/delete-task/<int:task_id>")
+def delete_task(task_id):
+    if "user_id" not in session:
+        return redirect("/login")
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    cursor.execute(
+        "DELETE FROM tasks WHERE id=%s AND user_id=%s",
+        (task_id, session["user_id"])
+    )
+    conn.commit()
+    cursor.close()
+    conn.close()
+    return redirect("/dashboard")
+
 
 
 # RUN
