@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - </title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/auth.css') }}">
+</head>
+<body>
+<div class="auth-container">
+ <div class="auth-box">
+<div class="auth-header">
+ <div class="auth-logo">
+ <h1>Personal Task Manager</h1>
+</div>
+</div>
+<h2> Create Account</h2>
+            
+{% with messages = get_flashed_messages(with_categories=true) %}
+{% if messages %}
+{% for category, message in messages %}
+<div class="alert alert-{{ category }}">
+ <i class="fas fa-{{ 'check-circle' if category == 'success' else 'exclamation-circle' }}"></i>
+
+ {{ message }}
+</div>
+ {% endfor %}
+{% endif %}
+{% endwith %}
+<!--submission form-->
+<form method="POST">
+<div class="input-group">
+<input type="text" name="username" placeholder="Username" required>
+</div>
+<div class="input-group"><input type="email" name="email" placeholder="Email address" required></div>
+<div class="input-group"><input type="password" name="password" id="password" placeholder="Password" required></div>
+<div class="input-group"> <input type="password" name="confirm_password" id="confirm_password" placeholder="Confirm password" required></div>
+<button type="submit"> Create Account</button>
+</form>
+<div class="auth-links"><p>Already have an account? <a href="/login">Login here</a></p>
+<a href="/"> Back to Home</a>
+</div>
+</div>
+</div>
+</body>
+</html>

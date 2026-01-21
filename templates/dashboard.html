@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Personal Task Manager</title>
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+<div class="container">
+<header class="header">
+<div class="header-top"><a href="/logout" class="logout-link"> Logout</a></div>
+ <p class="subtitle" style="font-size: 50px;">Personal Task Manager</p>
+ </header>
+    <main class="dashboard">
+    <div class="left-column">
+    <div class="card">
+<h2>  Add New Task </h2>
+<form class="task-form" method="POST" action="/add-task">
+<input type="text" name="title"placeholder="Task title"required>
+<textarea name="description" placeholder="Task description"></textarea>
+</form>
+</div>
+</div>
+<div class="right-column">
+  <div class="card">
+
+    <div class="tasks-header">
+      <h2>Your Tasks</h2>
+      <div class="task-count">
+        {{ tasks|length }}
+        {% if tasks|length == 1 %}
+          task
+        {% else %}
+          tasks
+        {% endif %}
+      </div>
+    </div>
+
+    {% if tasks %}
+    <table class="task-table">
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Description</th>
+          <th>Deadline</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        {% for task in tasks %}
+        <tr class="{{ task.deadline_status }} {% if task.status == 'completed' %}completed{% endif %}">
+          
+          <td>{{ task.title }}</td>
+
+          <td>{{ task.description }}</td>
+
+          <td>
+            {% if task.deadline %}
+              {{ task.deadline }}
+            {% else %}
+              —
+            {% endif %}
+          </td>
+
+          <td class="status-{{ task.status }}">
+            {{ task.status }}
+          </td>
+
+          <td>
+            {% if task.status == 'pending' %}
+              <a href="/complete-task/{{ task.id }}" class="btn btn-complete">Complete</a>
+              
+            {% else %}
+              <span class="task-completed-msg">Completed</span>
+            {% endif %}
+          </td>
+
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    {% else %}
+      <div class="empty-state">
+        <h3>No tasks yet</h3>
+      </div>
+    {% endif %}
+
+  </div>
+</div>
+
+</main>
+<footer class="footer"><p>Personal Task Manager </p></footer>
+</div>
+</body>
+</html>
