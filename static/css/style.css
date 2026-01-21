@@ -87,9 +87,10 @@ border-bottom: 2px solid #f0f2f5;
             gap: 10px;
         }
 
-.card h2 i {
-            color: #6a11cb;
-        }
+.action-buttons {
+  display: flex;
+  gap: 8px; /* space between buttons */
+}
 
 /* Form Styles */
 .task-form input,
@@ -116,7 +117,7 @@ border-bottom: 2px solid #f0f2f5;
  /* Button Styles */
 .btn {
 display: inline-block;
-padding: 14px 28px;
+padding: 5px 10px;
  background:  linear-gradient(to right,  #2575fc);
 color: white;
 border: none;
@@ -140,21 +141,25 @@ text-align: center;
         }
 
         .btn-delete {
-            background: linear-gradient(to right, #ff416c, #ff4b2b);
+            background: linear-gradient(to right, #ff416c);
+            margin-bottom: 5px;
         }
 
         .btn-delete:hover {
-            background: linear-gradient(to right, #e63e5c, #e64528);
+            background: linear-gradient(to right, #e63e5c);
         }
 
         .btn-complete {
-            background: linear-gradient(to right, #00b09b, #96c93d);
+            background: linear-gradient(to right, #00b09b);
         }
 
         .btn-complete:hover {
-            background: linear-gradient(to right, #009e87, #88b537);
+            background: linear-gradient(to right, #009e87);
         }
-
+.action-buttons {
+  display: flex;       
+  gap: 10px;           
+}
         /* Task List */
         .tasks-header {
             display: flex;
