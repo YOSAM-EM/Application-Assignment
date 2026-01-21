@@ -118,8 +118,34 @@ def complete_task(task_id):
     conn.close()
 
     return redirect("/dashboard")
+# This is the logic for adding task
+@app.route("/add-task", methods=["POST"])
+def add_task():
+    if "user_id" not in session:
+        return redirect("/login")
+
+    title = request.form["title"]
+    description = request.form.get("description")
+    deadline = request.form.get("deadline")
+
+    conn = get_db_connection()
+    cursor = conn.cursor()
+
+    cursor.execute(
+        """
+        INSERT INTO tasks (user_id, title, description, status, deadline)
+        VALUES (%s, %s, %s, %s, %s)
+        """,
+        (session["user_id"], title, description, "pending", deadline)
+    )
+    conn.commit()
+    cursor.close()
+    conn.close()
+    return redirect("/dashboard")
+
 
 # RUN
 
 if __name__ == "__main__":
     app.run(debug=True)
+ 
