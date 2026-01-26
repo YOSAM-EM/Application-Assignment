@@ -158,6 +158,31 @@ def delete_task(task_id):
     conn.close()
     return redirect("/dashboard")
 
+#this is the edit task feature logic
+@app.route("/edittask/<int:task_id>", methods=["GET","POST"])
+def edittask(task_id):
+    if "user_id" not in session:
+        return redirect("/login")
+    conn=get_db_connection()
+    cursor=conn.cursor(dictionary=True)
+    if request.method=="POST":
+        title=request.form.get("title")
+        description=request.form.get("description")
+        deadline=request.form.get("deadline")
+        cursor.execute("UPDATE tasks SET title=%s,description=%s,deadline=%s WHERE id=%s",(title,description,deadline,task_id) )
+        cursor.close()
+        conn.close()
+        return redirect("/dashboard")
+    cursor.execute("SELECT *FROM tasks WHERE id=%s",(task_id,))
+    tasks=cursor.fetchone()
+    cursor.close()
+    conn.close()
+
+
+    return render_template("/edit.html", tasks=tasks)
+
+
+
 
 
 # RUN
