@@ -1,0 +1,17 @@
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+{% include "header.html"%}
+<div class="edittask">
+         <h2>Edit Task</h2>
+
+   <form  method="POST" class="editform">
+    <label>Tittle</label>
+    <input type="text" name="title" value="{{tasks.title}}">
+    <label>Description</label>
+    <input type="text" name="description" value="{{tasks.description}}">
+    <label>Deadline</label>
+    <input class="daty" type="date" name="deadline" value="{{tasks.deadline}}">
+    <div class="editbutton"> <button type="submit" >save</button>
+</div>
+   </form>
+</div>

@@ -8,11 +8,8 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
+  {% include "header.html"%}
 <div class="container">
-<header class="header">
-<div class="header-top"><a href="/logout" class="logout-link"> Logout</a></div>
- <p class="subtitle" style="font-size: 50px;">Personal Task Manager</p>
- </header>
     <main class="dashboard">
     <div class="left-column">
     <div class="card">
@@ -20,9 +17,7 @@
 <form class="task-form" method="POST" action="/add-task">
 <input type="text" name="title"placeholder="Task title"required>
 <textarea name="description" placeholder="Task description"></textarea>
-
 <input type="date"name="deadline"required > <button type="submit" class="btn"> Add Task</button>
-
 </form>
 </div>
 </div>
@@ -78,6 +73,7 @@
               <div class="action-buttons">
     <a href="/complete-task/{{ task.id }}" class="btn btn-complete">Complete</a>
     <a href="/delete-task/{{ task.id }}" class="btn btn-delete" onclick="return confirm('Delete this task?')">Delete</a>
+        <a href="/edittask/{{ task.id }}" class="btn btn-complete" onclick="return confirm('Do you want to edit this task?')">Edit</a>
   </div>
             {% else %}
               <span class="task-completed-msg">Completed</span>

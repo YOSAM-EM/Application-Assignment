@@ -21,33 +21,7 @@ color: #333;
 margin: 0 auto;
         padding: 0 15px;
         }
-/* Header */
-.header {
- text-align: center;
-    margin-bottom: 30px;
-    padding: 25px 0;
-    background: linear-gradient(135deg,#2575fc 100%);
-      border-radius: 12px;
-        color: white;
-        box-shadow: 0 8px 20px rgba(106, 17, 203, 0.2);
-        }
 
-.header h1 {
-font-size: 2.5rem;
-margin-bottom: 10px;
-    display: flex;
-align-items: center;
- justify-content: center;
-     gap: 15px;
-        }
-.header h1 i {
-            font-size: 2.8rem;
-        }
- .subtitle {
-            font-size: 1.1rem;
-            opacity: 0.9;
-            font-weight: 300;
-        }
 /* Main Content Layout */
 .dashboard {
             
@@ -89,7 +63,7 @@ border-bottom: 2px solid #f0f2f5;
 
 .action-buttons {
   display: flex;
-  gap: 8px; /* space between buttons */
+  gap: 8px;
 }
 
 /* Form Styles */
@@ -342,4 +316,43 @@ animation: fadeIn 0.4s ease-out;
 
 .task-item.upcoming {
     background: #fff3e0; 
+}
+.edittask{
+    border-radius: 10px;
+    margin: 100px;
+    padding-left: 100px;
+        padding-bottom: 50px;
+    padding-right: 100px;
+        padding-top: 50px;
+margin-top: 0;
+    justify-items: center;
+
+    background-color: white;
+    
+box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.editform input{
+    display: block;
+    padding-left: 200px;
+    padding-bottom: 25px;
+
+}
+.editform input .daty{ padding-left: 100px important!;}
+.editbutton button{
+display: inline-block;
+padding: 10px 40px;
+ background:  linear-gradient(to right,  #25cafc);
+color: white;
+border: none;
+ border-radius: 8px;
+font-size: 1rem;
+font-weight: 600;
+cursor: pointer;
+transition: all 0.3s ease;
+text-decoration: none;
+text-align: center;
+margin-top: 10px;
+margin-left: 120px;
+
 }
